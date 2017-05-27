@@ -116,7 +116,7 @@ public final class Launcher {
      */
     public void setDefaultConfig() {
         double configMax = config.getMaxMemory() / 1024.0;
-        double suggestedMax = 2;
+        double suggestedMax = 3.9;
         double available = Double.MAX_VALUE;
 
         try {
