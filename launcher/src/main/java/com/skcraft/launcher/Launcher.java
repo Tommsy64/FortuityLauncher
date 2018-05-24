@@ -123,14 +123,14 @@ public final class Launcher {
             OperatingSystemMXBean bean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
             available = bean.getTotalPhysicalMemorySize() / 1024.0 / 1024.0 / 1024.0;
             if (available <= 6) {
-                suggestedMax = available * 0.48;
+                suggestedMax = Math.max(Math.min(available * 0.95, 4), 2);
             } else {
-                suggestedMax = 4;
+                suggestedMax = 4.5;
             }
         } catch (Exception ignored) {
         }
 
-        if (config.getMaxMemory() <= 0 || configMax >= available - 1) {
+        if (config.getMaxMemory() <= 0 /*|| configMax >= available - 1*/) {
             config.setMaxMemory((int) (suggestedMax * 1024));
         }
     }
